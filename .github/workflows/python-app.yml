@@ -29,7 +29,7 @@ jobs:
         run: |
           python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('punkt_tab'); nltk.download('wordnet')"
 
-      - name: Run Flask App
+      - name: Run Tests
         run: |
-          timeout 10s python app.py
+          pytest
       
