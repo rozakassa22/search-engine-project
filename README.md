@@ -24,6 +24,7 @@ Flask
 nltk
 scikit-learn
 numpy
+pytest
 ```
 
 ## ⚙️ **Installation**
