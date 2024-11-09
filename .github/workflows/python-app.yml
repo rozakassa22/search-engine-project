@@ -31,4 +31,5 @@ jobs:
 
       - name: Run Flask App
         run: |
-          python app.py
+          timeout 10s python app.py
+      
