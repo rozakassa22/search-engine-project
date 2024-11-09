@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <style>
+        /* Inline CSS for styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+        }
+        .back-link a {
+            text-decoration: none;
+            color: #2193b0;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+        }
+        .back-link a:hover {
+            color: #6dd5ed;
+        }
+        .back-link a i {
+            margin-right: 8px;
+        }
+        .container {
+            width: 60%;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            animation: fadeInDown 1s;
+        }
+        .results {
+            margin-top: 20px;
+            animation: fadeInUp 1s;
+        }
+        .result {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 6px solid #2193b0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .result:hover {
+            transform: translateY(-5px);
+        }
+        .result h3 {
+            margin: 0 0 10px 0;
+            color: #2193b0;
+        }
+        .result p {
+            color: #555;
+            line-height: 1.6;
+        }
+        footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Icon Style */
+        .icon {
+            width: 64px;
+            height: 64px;
+            display: inline-block;
+            background-size: cover;
+        }
+        .back-icon {
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="%232193b0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>');
+        }
+    </style>
+</head>
+<body>
+    <div class="back-link">
+        <a href="/"><span class="icon back-icon"></span></a>
+    </div>
+    <div class="container">
+        <h1>Search Results for "{{ query }}"</h1>
+        <p>{{ num_matching_documents }} documents found.</p>
+        <div class="results">
+            {% for doc in matched_documents %}
+            <div class="result">
+                <h3>{{ doc.filename }}</h3>
+                <p>{{ doc.snippet }}</p>
+                <p><strong>Similarity Score:</strong> {{ "{0:.2f}".format(doc.similarity) }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 My Search Engine
+    </footer>
+</body>
+</html>
